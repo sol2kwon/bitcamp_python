@@ -1,4 +1,5 @@
 import random
+import math
 
 class Quiz01Calculator:
     def __init__(self, num1, op, num2):
@@ -114,9 +115,20 @@ class Quiz08Rps(object):
         return res
 
 
-class Quiz09GetPrime(object):
-    def __init__(self):
-        pass
+class Quiz09GetPrime:
+    def __init__(self,num1):
+        self.num1 = num1
+
+    def prime(self):
+        n = self.num1
+        b = int(math.sqrt(n))
+        for i in range(2,b+1):
+            if n % i == 0:
+                return f'숫자1: {b}'
+
+
+
+
 class Quiz10LeapYear(object):
     def __init__(self):
         pass
