@@ -1,6 +1,8 @@
 import random
 import math
 
+
+
 class Quiz01Calculator:
     def __init__(self, num1, op, num2):
         self.num1 = num1
@@ -116,15 +118,27 @@ class Quiz08Rps(object):
 
 
 class Quiz09GetPrime:
-    def __init__(self,num1):
+    def __init__(self,num1,num2):
         self.num1 = num1
+        self.num2 = num2
+
+
 
     def prime(self):
-        n = self.num1
-        b = int(math.sqrt(n))
-        for i in range(2,b+1):
-            if n % i == 0:
-                return f'숫자1: {b}'
+        num1 = self.num1
+        num2 = self.num2
+        res =''
+        for i in range(num1,num2+1):
+            c = 0
+            for k in range(1 ,i+1):
+                if i % k == 0:
+                    c += 1
+            if c <= 2:
+                res += f'{i} \t'
+        return res
+
+
+
 
 
 

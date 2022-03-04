@@ -1,6 +1,8 @@
 from hello.domains import Member
 from hello.models import Quiz01Calculator, Quiz02Bmi, Quiz03Grade, Quiz04GradeAuto, Quiz05Dice, Quiz07RandomChoice, \
     Quiz08Rps, Quiz09GetPrime
+from Quiz30 import Quize30
+
 
 if __name__ == '__main__':
     while 1:
@@ -42,5 +44,11 @@ if __name__ == '__main__':
             q8 = Quiz08Rps(int(input('플레이어:')))
             print(q8.game())
         elif menu == '9':
-            q9 = Quiz09GetPrime(int(input('숫자1:')))
+            q9 = Quiz09GetPrime(int(input('숫자1:')),int(input('숫자2:')))
             print(q9.prime())
+        elif menu == '30':
+            print(Quize30.quiz30list())
+        elif menu == '31':
+            print(Quize30.quiz31tuple())
+        elif menu == '32':
+            print(Quize30.quiz32dict())

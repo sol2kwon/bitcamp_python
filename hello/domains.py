@@ -1,25 +1,30 @@
 from dataclasses import dataclass
+from random import random
+
 @dataclass
-class Member():
-    name: str
-    height: float
-    weight: float
+class Member:
+
+    name : str
+    height : float
+    weight : float
 
     @property
-    def weight(self) -> float: return self._weight
+    def name(self) -> str: return self._name;
 
-    @weight.setter
-    def weight(self, weight): self._weight = weight
+    @name.setter
+    def name(self, name): self._name = name
 
     @property
     def height(self) -> float: return self._height
 
     @height.setter
-    def height(self,height): self._height = height
+    def height(self, height): self._height = height
 
     @property
-    def name(self)-> str: return self._name
+    def weight(self) -> float : return self._weight;
 
-    @name.setter
-    def name(self,name): self._name = name
+    @weight.setter
+    def weight(self, weight): self._weight = weight
 
+def myRandom(start, end): return random.randint(start, end)
+def my100(): return myRandom(1,100)
