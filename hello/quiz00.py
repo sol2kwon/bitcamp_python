@@ -1,5 +1,7 @@
+from hello.domains import myRandom,memberlist
+import random
 
-from hello.domains import myRandom,memberrandom
+
 class Quiz00:
     def quiz00calculator(self):
         a = myRandom(1,100)
@@ -51,11 +53,17 @@ class Quiz00:
         print(f'{res}')
 
     def quiz04leap(self):
-        pass
+        year = myRandom(1000,5000)
+        if(year % 4 == 0 and year % 100!= 0)or(year % 400 ==0):
+           res = "윤년"
+        else :
+            res = "평년"
+        print(f"{year}년도는 {res}입니다.")
+
 
 
     def quiz05grade(self):
-            name = memberrandom()
+            name = memberlist()
             kor = myRandom(90, 100)
             eng = myRandom(50, 100)
             math = myRandom(50, 100)
@@ -76,18 +84,39 @@ class Quiz00:
             else:
                 res = '불합격'
             print(f'{name}님의 점수 → 국어:{kor} 영어:{eng} 수학:{math} 합격여부:{res}')
-## 하나로 출력하는거 고민해 보기
+            ## 하나로 출력하는거 고민해 보기
 
     def quiz06memberChoice(self):
-        def __init__(self):  # 803호에서 랜덤으로 1명 이름 추출
-            self.members = ['홍정명', '노홍주', '전종현', '정경준', '양정오',
-                            "권혜민", "서성민", "조현국", "김한슬", "김진영",
-                            '심민혜', '권솔이', '김지혜', '하진희', '최은아',
-                            '최민서', '한성수', '김윤섭', '김승현',
-                            "강 민", "최건일", "유재혁", "김아름", "장원종"]
+            print(memberlist())
 
+#1. 1~45번 중 6개를 중복없이 뽑아야 한다.
+#2. 6개를 뽑고 보너스 번호를 하나 더 뽑는다.
+#3. 처음 뽑은 번호 6개가 일치하면 1등
     def quiz07lotto(self):
-            pass
+        lottonum = random.sample(range(46),7)
+        mynum = random.sample(range(46),6)
+        res = ""
+        a=[1,2,3,8,9]
+        b=[2,3,5,8]
+
+
+
+        for i in a:
+            c = 0
+            for k in b:
+                if i % k == 0:
+                    c+= 1
+            if c >= 1 and c<=7:
+                res += f'{i} \t'
+        print(res)
+
+
+
+
+
+
+
+
 
     def quiz08bank(self):  # 이름, 입금, 출금만 구현
             pass
