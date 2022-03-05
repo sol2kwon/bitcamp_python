@@ -1,4 +1,4 @@
-from hello.domains import Member
+
 from hello.quiz00 import Quiz00
 from hello.quiz10 import Quiz10
 from hello.quiz20 import Quiz20

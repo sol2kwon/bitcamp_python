@@ -1,7 +1,5 @@
-from hello.ex import myRandom
-import random
-import math
 
+from hello.domains import myRandom,memberrandom
 class Quiz00:
     def quiz00calculator(self):
         a = myRandom(1,100)
@@ -57,6 +55,7 @@ class Quiz00:
 
 
     def quiz05grade(self):
+            name = memberrandom()
             kor = myRandom(90, 100)
             eng = myRandom(50, 100)
             math = myRandom(50, 100)
@@ -76,7 +75,8 @@ class Quiz00:
                 res = '합격'
             else:
                 res = '불합격'
-            print(f'국어:{kor} 영어:{eng} 수학:{math} 합격여부:{res}')
+            print(f'{name}님의 점수 → 국어:{kor} 영어:{eng} 수학:{math} 합격여부:{res}')
+## 하나로 출력하는거 고민해 보기
 
     def quiz06memberChoice(self):
         def __init__(self):  # 803호에서 랜덤으로 1명 이름 추출
@@ -99,5 +99,3 @@ class Quiz00:
 
 
 
-def myRandom(start,end):
-    return random.randint(start,end)
