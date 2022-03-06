@@ -96,18 +96,25 @@ class Quiz00:
         lottonum = random.sample(range(46),7)
         mynum = random.sample(range(46),6)
         res = ""
-        a=[1,2,3,8,9]
-        b=[2,3,5,8]
+        a=[1,2,3,8,9,10,7]
+        b=[2,3,5,8,10,11]
 
+        #i 1 2
 
-
-        for i in a:
+        for i in a[0:6]:
             c = 0
-            for k in b:
+            for k in b[0:6]:
                 if i % k == 0:
-                    c+= 1
-            if c >= 1 and c<=7:
-                res += f'{i} \t'
+                    c += 1
+                    if c == 6:
+                        res = f'일등 {c} \t'
+                    elif c == 5:
+                        res = f'삼등 {c} \t'
+                    elif c ==4:
+                        res = f'사등 {c} \t'
+                    elif c == 3:
+                        res = f'오등 {c} \t'
+
         print(res)
 
 
