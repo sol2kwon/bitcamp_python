@@ -97,23 +97,28 @@ class Quiz00:
         mynum = random.sample(range(46),6)
         res = ""
         a=[1,2,3,8,9,10,7]
-        b=[2,3,5,8,10,11]
+        b=[2,3,1,8,9,7]
 
-        #i 1 2
 
+        c = 0
         for i in a[0:6]:
-            c = 0
             for k in b[0:6]:
-                if i % k == 0:
+                if i==k:
                     c += 1
-                    if c == 6:
-                        res = f'일등 {c} \t'
-                    elif c == 5:
-                        res = f'삼등 {c} \t'
-                    elif c ==4:
-                        res = f'사등 {c} \t'
-                    elif c == 3:
-                        res = f'오등 {c} \t'
+                
+
+
+        if c == 6:
+            res = f'일등 {c} \t'
+        elif c == 5 :
+            for a[6] in b[0:6]:
+                res = f'이등 {c} \t'
+        elif c == 5:
+            res = f'삼등 {c} \t'
+        elif c ==4:
+            res = f'사등 {c} \t'
+        elif c == 3:
+            res = f'오등 {c} \t'
 
         print(res)
 
