@@ -120,15 +120,21 @@ class Quiz00:
 
     def quiz09gugudan(self):  # 책받침구구단
 
+        '''
         for i in (0,4):
             for k in range(1,10):
                 for j in range(2,6):
                     print(f'{j+i}*{k}={(j+i)*k}\t', end='')
                 print("")
             print("")
-
-
-
+    '''
+    ''' 
+    print("**************************************")
+    for i in (0,4):
+        for k in range(1,10):
+            for j in range(2,6):
+                print(f'{j}*{k}={k*j}')
+    '''
 
     '''
     은행이름은 Bitbank
