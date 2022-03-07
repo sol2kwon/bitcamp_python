@@ -89,37 +89,46 @@ class Quiz00:
 #2. 6개를 뽑고 보너스 번호를 하나 더 뽑는다.
 #3. 처음 뽑은 번호 6개가 일치하면 1등
     def quiz07lotto(self):
-        lottonum = random.sample(range(46),7)
-        mynum = random.sample(range(46),6)
-        res = ""
-        a=[1,2,3,8,9,10,7]
-        b=[2,3,1,8,9,7]
-
+        lottonum = random.sample(range(1, 46), 7)
+        mynum = random.sample(range(1, 46), 6)
         c = 0
-        for i in a[0:6]:
-            for k in b[0:6]:
-                if i==k:
+
+        for i in lottonum[:6]:
+            for k in mynum:
+                if i == k:
                     c += 1
         if c == 6:
-            res = f'일등 {c} \t'
+            res = f'★일등★ {c}개 번호 동일 \t'
         elif c == 5:
             b_c = 0
-            for i in b:
-                if a[6] == i:
+            for i in mynum:
+                if lottonum[6] == i:
                     b_c = 1
                     break
             if b_c == 1:
-                res = f'이등 {c} \t'
+                res = f'★이등★ {c}개 번호 동일 \t'
             else:
-                res = f'삼등 {c} \t'
+                res = f'★삼등★ {c}개 번호 동일 \t'
         elif c == 4:
-            res = f'사등 {c} \t'
+            res = f'★사등★ {c}개 번호 동일 \t'
         elif c == 3:
-            res = f'오등 {c} \t'
-        print(res)
+            res = f'★오등★ {c}개 번호 동일 \t'
+        else:
+            res = f'★꽝★ {c}개 번호 동일'
+        print(f'오늘의 로또 번호:{mynum}\n나의 로또 번호:{lottonum}\n로또 결과:{res}')
+
 
     def quiz09gugudan(self):  # 책받침구구단
-            pass
+
+        for i in (0,4):
+            for k in range(1,10):
+                for j in range(2,6):
+                    print(f'{j+i}*{k}={(j+i)*k}\t', end='')
+                print("")
+            print("")
+
+
+
 
     '''
     은행이름은 Bitbank
@@ -128,20 +137,23 @@ class Quiz00:
     123-12-123456
     '''
     def quiz08bank(self):  # 이름, 입금, 출금만 구현
-        print(Account().to_string())
+        Account.main()
+
+
 
 
 class Account(object):
-    def __init__(self):
+    def __init__(self,name,account_number,money):
         self.BANK_NAME ='비트은행'
-        self.name = memberlist()
+        self.name = memberlist() if name == None else name
+        '''
         a = myRandom(0, 999)
         b = myRandom(0, 99)
         c = myRandom(0, 999999)
+        '''
         #self.account_number = f'{myRandom(0,999):0>3}-{myRandom(0,99):0>2}-{myRandom(0,999999):>6}'
-        self.money = myRandom(100,999)
-        self.account_number = self.creat_account_number()
-
+        self.money = myRandom(100,999) if money == None else money
+        self.account_number = self.creat_account_number() if account_number == None else account_number
 
 
     def to_string(self):
@@ -149,8 +161,8 @@ class Account(object):
                 f' 입금자: {self.name}, ' \
                 f'계좌번호: {self.account_number},'\
                 f' 금액: {self.money}만원')
-
-    def creat_account_number(self):
+    @staticmethod
+    def creat_account_number():
         '''
         ls =[str(myRandom(0,9))for i in range(3)]
         ls.append("-")
@@ -160,8 +172,42 @@ class Account(object):
         return "".join([])
 '''
         return "".join(["-" if i==3 or i==6 else str(myRandom(0,9)) for i in range(13)])
+
         #[str(myRandom(0,9)) if str(myRandom(0,9) == myRandom[4] else '-' if myRandom(0,9) == myRandom[7]else range[2] == " "for i in range(13)]
 
+    def del_account(self,ls,account_number):
+        for i,j in enumerate(ls):
+            if j.account_number == account_number:
+                del ls[i]
+    @staticmethod
+    def main():
+        ls = []
+        while 1 :
+            menu = input('0.종료 1.계좌개설 2.계좌내용 3.내용 4.출금 5.계좌해지')
+            if menu == '0':
+                break
+            if menu == '1':
+                acc = Account(None,None,None)
+                print(f'{acc.to_string()}...개설되었습니다.')
+                ls.append(acc)
+            elif menu =='2':
+                a = '\n'.join(i.to_string() for i in ls)
+                print (a)
+            elif menu == '3':
+                account_number = input('입금할 계좌번호')
+                deposit = input('입금')
+                for i,j in enumerate(ls):
+                    if j.account_number == account_number:
+                        pass
+
+            elif menu == '4':
+                account_number = input('출금할 계좌번호')
+                money = input('출금액')
+            elif menu =='5':
+                account_number = input('탈퇴할 계좌번호')
+            else:
+                print('Wrong Number.. Try Again')
+                continue
 
 
 
