@@ -1,7 +1,6 @@
 from hello.domains import myRandom,memberlist
 import random
 
-
 class Quiz00:
     def quiz00calculator(self):
         a = myRandom(1,100)
@@ -53,20 +52,19 @@ class Quiz00:
         print(f'{res}')
 
     def quiz04leap(self):
-        year = myRandom(1000,5000)
-        if(year % 4 == 0 and year % 100!= 0)or(year % 400 ==0):
-           res = "윤년"
-        else :
-            res = "평년"
+        year = myRandom(2000,2022)
+        s1 = "윤년" if year % 4 ==0 and year %100!= 0 else "평년"
+        s2= "윤년"if year %400 ==0 else "평년"
+        res = "윤년"if s2 or s1 else "평년"
         print(f"{year}년도는 {res}입니다.")
 
 
 
     def quiz05grade(self):
             name = memberlist()
-            kor = myRandom(90, 100)
-            eng = myRandom(50, 100)
-            math = myRandom(50, 100)
+            kor = myRandom(2, 100)
+            eng = myRandom(2, 100)
+            math = myRandom(2, 100)
             sum = kor+eng+math
             avg = int(sum/3)
             grade = ['A', 'B', 'C', 'D', 'E', 'F']
@@ -77,13 +75,11 @@ class Quiz00:
             else:
                 g_index = 5
 
-            print(f'{avg} {grade[g_index]}')
-
             if avg >= 60:
                 res = '합격'
             else:
                 res = '불합격'
-            print(f'{name}님의 점수 → 국어:{kor} 영어:{eng} 수학:{math} 합격여부:{res}')
+            print(f'{name}님의 점수 → 국어:{kor} 영어:{eng} 수학:{math} 평균:{avg:.2f} 학점:{grade[g_index]} 합격여부:{res}')
             ## 하나로 출력하는거 고민해 보기
 
     def quiz06memberChoice(self):
@@ -99,42 +95,78 @@ class Quiz00:
         a=[1,2,3,8,9,10,7]
         b=[2,3,1,8,9,7]
 
-
         c = 0
         for i in a[0:6]:
             for k in b[0:6]:
                 if i==k:
                     c += 1
-                
-
-
         if c == 6:
             res = f'일등 {c} \t'
-        elif c == 5 :
-            for a[6] in b[0:6]:
-                res = f'이등 {c} \t'
         elif c == 5:
-            res = f'삼등 {c} \t'
-        elif c ==4:
+            b_c = 0
+            for i in b:
+                if a[6] == i:
+                    b_c = 1
+                    break
+            if b_c == 1:
+                res = f'이등 {c} \t'
+            else:
+                res = f'삼등 {c} \t'
+        elif c == 4:
             res = f'사등 {c} \t'
         elif c == 3:
             res = f'오등 {c} \t'
-
         print(res)
-
-
-
-
-
-
-
-
-
-    def quiz08bank(self):  # 이름, 입금, 출금만 구현
-            pass
 
     def quiz09gugudan(self):  # 책받침구구단
             pass
+
+    '''
+    은행이름은 Bitbank
+    입금자 이름(name), 계좌번호(account_number), 금액(money) 속성값으로 계좌를 생성한다.
+    계좌번호는 3자리 - 2자리 - 6자리 형태로 랜덤하게 생성된다.
+    123-12-123456
+    '''
+    def quiz08bank(self):  # 이름, 입금, 출금만 구현
+        print(Account().to_string())
+
+
+class Account(object):
+    def __init__(self):
+        self.BANK_NAME ='비트은행'
+        self.name = memberlist()
+        a = myRandom(0, 999)
+        b = myRandom(0, 99)
+        c = myRandom(0, 999999)
+        #self.account_number = f'{myRandom(0,999):0>3}-{myRandom(0,99):0>2}-{myRandom(0,999999):>6}'
+        self.money = myRandom(100,999)
+        self.account_number = self.creat_account_number()
+
+
+
+    def to_string(self):
+        return (f'은행 : {self.BANK_NAME},' \
+                f' 입금자: {self.name}, ' \
+                f'계좌번호: {self.account_number},'\
+                f' 금액: {self.money}만원')
+
+    def creat_account_number(self):
+        '''
+        ls =[str(myRandom(0,9))for i in range(3)]
+        ls.append("-")
+        ls +=[str(myRandom(0,9))for i in range(2)]
+        ls.append("-")
+        ls += [str(myRandom(0,9))for i in range(6)]
+        return "".join([])
+'''
+        return "".join(["-" if i==3 or i==6 else str(myRandom(0,9)) for i in range(13)])
+        #[str(myRandom(0,9)) if str(myRandom(0,9) == myRandom[4] else '-' if myRandom(0,9) == myRandom[7]else range[2] == " "for i in range(13)]
+
+
+
+
+
+
 
 
 
