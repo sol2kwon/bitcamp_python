@@ -4,18 +4,24 @@ from hello.quiz10 import Quiz10
 from hello.quiz20 import Quiz20
 from hello.quiz30 import Quiz30
 from hello.quiz40 import Quiz40
+from hello.bit803 import Bit803
+
+
 if __name__ == '__main__':
     q0 = Quiz00()
     q1 = Quiz10()
     q2 = Quiz20()
     q3 = Quiz30()
     q4 = Quiz40()
+
     while 1:
         menu = input("00계산기 01Bmi 02주사위 03가위바위보 04윤년 05성적표 \n06멤버선택 07로또 08입출금 09구구단"
                      "10버블\n11삽입 12선택 13퀵 14병합 15매직\n16지그재그 17소수 18골프 19예약"
-                     "20리스트\n21튜플 22딕셔너리 23 24 25\n26 27 28 29"
+                     "20리스트\n21튜플 22딕셔너리 23컴프리 24벅스뮤직(zip) 25\n26 27멜론 28 29"
                      "30\n31 32 33 34 35 36 37 38 39")
-        if menu == '00': q0.quiz00calculator()
+        if menu == '00':
+            Bit803.main()
+            #q0.quiz00calculator()
         elif menu == '01': q0.quiz01bmi()
         elif menu == '02': q0.quiz02dice()
         elif menu == '03': q0.quiz03rps()
@@ -42,7 +48,7 @@ if __name__ == '__main__':
         elif menu == '24': q2.quiz24zip()
         elif menu == '25': q2.quiz25dictcom()
         elif menu == '26': q2.quiz26map()
-        elif menu == '27': q2.quiz27()
+        elif menu == '27': q2.quiz27melon()
         elif menu == '28': q2.quiz28()
         elif menu == '29': q2.quiz29()
         elif menu == '30': q2.quiz30()

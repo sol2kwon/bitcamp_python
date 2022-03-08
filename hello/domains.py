@@ -33,4 +33,4 @@ def memberlist():
                         '심민혜', '권솔이', '김지혜', '하진희', '최은아',
                        "강 민", "최건일", "유재혁", "김아름", "장원종"]
 
-    return member[myRandom(0,23)]
+    return member[myRandom(0,19)]

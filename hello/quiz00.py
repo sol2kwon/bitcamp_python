@@ -58,8 +58,6 @@ class Quiz00:
         res = "윤년"if s2 or s1 else "평년"
         print(f"{year}년도는 {res}입니다.")
 
-
-
     def quiz05grade(self):
             name = memberlist()
             kor = myRandom(2, 100)
@@ -119,22 +117,17 @@ class Quiz00:
 
 
     def quiz09gugudan(self):  # 책받침구구단
-
-        '''
         for i in (0,4):
             for k in range(1,10):
                 for j in range(2,6):
                     print(f'{j+i}*{k}={(j+i)*k}\t', end='')
                 print("")
             print("")
-    '''
-    ''' 
-    print("**************************************")
-    for i in (0,4):
-        for k in range(1,10):
-            for j in range(2,6):
-                print(f'{j}*{k}={k*j}')
-    '''
+
+
+
+
+
 
     '''
     은행이름은 Bitbank
@@ -149,6 +142,7 @@ class Quiz00:
 
 
 class Account(object):
+    BANK_NAME = '비트은행'
     def __init__(self,name,account_number,money):
         self.BANK_NAME ='비트은행'
         self.name = memberlist() if name == None else name
@@ -176,20 +170,38 @@ class Account(object):
         ls.append("-")
         ls += [str(myRandom(0,9))for i in range(6)]
         return "".join([])
-'''
+        '''
         return "".join(["-" if i==3 or i==6 else str(myRandom(0,9)) for i in range(13)])
 
         #[str(myRandom(0,9)) if str(myRandom(0,9) == myRandom[4] else '-' if myRandom(0,9) == myRandom[7]else range[2] == " "for i in range(13)]
 
-    def del_account(self,ls,account_number):
+    @staticmethod
+    def del_account(ls,account_number):
         for i,j in enumerate(ls):
             if j.account_number == account_number:
                 del ls[i]
+
+    @staticmethod
+    def find_account(ls, account_number):
+         a = ''.join([j.to_string() if j.account_number == account_number else '찾는 계좌 아님'for i,j in enumerate(ls)])
+         return a
+
+    @staticmethod
+    def mimus_money(ls, find_account):
+        pass
+
+    @staticmethod
+    def plus_money(ls, find_account,p_money):
+        for i, j in enumerate(ls):
+            if j.find_account == find_account :
+                j.money += p_money
+                return ls(j)
+
     @staticmethod
     def main():
         ls = []
         while 1 :
-            menu = input('0.종료 1.계좌개설 2.계좌내용 3.내용 4.출금 5.계좌해지')
+            menu = input('0.종료 1.계좌개설 2.계좌내용 3.내용 4.출금 5.계좌해지 6.계좌조회')
             if menu == '0':
                 break
             if menu == '1':
@@ -200,17 +212,15 @@ class Account(object):
                 a = '\n'.join(i.to_string() for i in ls)
                 print (a)
             elif menu == '3':
-                account_number = input('입금할 계좌번호')
-                deposit = input('입금')
-                for i,j in enumerate(ls):
-                    if j.account_number == account_number:
-                        pass
+                print(Account.plus_money(ls,input('입금')))
 
             elif menu == '4':
                 account_number = input('출금할 계좌번호')
                 money = input('출금액')
             elif menu =='5':
-                account_number = input('탈퇴할 계좌번호')
+                Account.del_account(ls, input('탈퇴할 계좌번호'))
+            elif menu =='6':
+                print (Account.find_account(ls, input('조회할 계좌번호')))
             else:
                 print('Wrong Number.. Try Again')
                 continue
