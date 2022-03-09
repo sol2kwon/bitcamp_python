@@ -34,3 +34,6 @@ def memberlist():
                        "강 민", "최건일", "유재혁", "김아름", "장원종"]
 
     return member[myRandom(0,19)]
+
+def bit803():
+    return ['권솔이','노홍주','전종현','전경준','권혜민']

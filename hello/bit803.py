@@ -1,18 +1,17 @@
-from hello.domains import myRandom,memberlist
+from hello.domains import myRandom, memberlist, bit803
 import random
-
-
 class Bit803:
     light = 0
     temp = 0
 
     def __init__(self):
-        self.name = memberlist()
+        self.name = bit803()
         self.attendance = myRandom(0,1)
         self.age = myRandom(20,30)
 
     def attend(self):
-        return f'이름:{self.name} 나이:{self.age} 출석:{self.attendance}'
+        for i in range(1):
+            return f'이름:{self.name} 나이:{self.age} 출석:{self.attendance}'
 
     def ctrl_temp(self):
         pass
