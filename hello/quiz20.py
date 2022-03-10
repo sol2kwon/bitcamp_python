@@ -29,15 +29,45 @@ class Quiz20:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
+        dict = {}
         # print(soup.prettify())
-        artists = soup.find_all('p',{'class':'artist'})
+        artist = soup.find_all('p',{'class':'artist'})
         # print(type(artists)) # <class 'bs4.element.ResultSet'>
-        artists = [i.get_text() for i in artists]
+        #artists = [i.get_text() for i in artists]
         #print(type(artists))
-        print(''.join(i for i in artists))
-        return None
 
-       # print(soup.prettify())
+        #title = soup.find_all('p', {'class': 'title'})
+        #title = [i.get_text() for i in title]
+       # print(''.join(i for i in title))
+
+        # print(''.join(i for i in artists))
+        #print(''.join(i for i in artists))
+        ls=[]
+        '''
+        for i,j in enumerate(['artist', 'title']):
+            print('\n\n\n'.join(i for i in [i for i in self.reuse(soup,j)]))
+        '''
+
+
+        # a = [i for i in [soup, 'title']]
+        # a = [i for i in [soup, 'artist']]
+        # print(soup.prettify())
+        return None
+    
+    def reuse_rank(self,soup):
+        for i, j in enumerate(['artist', 'title']):
+            for i, j in enumerate(self.reuse(soup, j)):
+                print(f'{i}위 : {j}')
+            print('#'*100)
+
+
+    @staticmethod
+    def reuse(soup,cls_nm) -> []:
+            ls = soup.find_all('p', {'class': cls_nm})
+            return [i.get_text() for i in ls]
+            # print(''.join(i for i in titles))
+
+
 
     def quiz25dictcom(self) -> str: return None
 
@@ -59,6 +89,7 @@ class Quiz20:
         return None
 
     def quiz28(self) -> str: return None
+
 
     def quiz29(self) -> str: return None
 
