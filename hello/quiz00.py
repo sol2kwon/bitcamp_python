@@ -2,6 +2,9 @@ from hello.domains import myRandom, memberlist
 import random
 
 
+
+
+
 class Quiz00:
     def quiz00calculator(self):
         a = myRandom(1, 100)
@@ -81,8 +84,9 @@ class Quiz00:
         print(f'{name}님의 점수 → 국어:{kor} 영어:{eng} 수학:{math} 평균:{avg:.2f} 학점:{grade[g_index]} 합격여부:{res}')
         ## 하나로 출력하는거 고민해 보기
 
-    def quiz06memberChoice(self):
-        print(memberlist())
+    @staticmethod
+    def quiz06memberChoice():
+        return memberlist()[myRandom(0,23)]
 
     # 1. 1~45번 중 6개를 중복없이 뽑아야 한다.
     # 2. 6개를 뽑고 보너스 번호를 하나 더 뽑는다.

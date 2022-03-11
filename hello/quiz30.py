@@ -1,5 +1,12 @@
+import pandas as pd
+from icecream import ic
+
+
 class Quiz30:
-    def quiz30(self) -> str: return None
+    def quiz30_df_4_by_3(self) -> str:
+
+
+        return None
 
     def quiz31(self) -> str: return None
 
@@ -55,6 +62,7 @@ class Quiz30:
         b.index(0)
         len(b)
         print(b.index(0), len(b))
+
 
     @staticmethod
     def quiz31tuple():
