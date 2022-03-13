@@ -170,22 +170,6 @@ class Quiz20:
         ls = soup.find_all('span', {'class': artist})
         return [i.get_text() for i in ls]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     def quiz28dataframe(self) -> None:
         dict = self.quiz24bugs_zip()
         df = pd.DataFrame.from_dict(dict, orient='index')
@@ -205,34 +189,40 @@ class Quiz20:
      2  2   4   6
      
     '''
-
-
     def quiz29_pandas_(self) -> object:
-        d1 = {'a': [1, 2]
-            , 'b': [3, 4],
-              'c': [5, 6]}
-        d = {'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}
-        df1 = pd.DataFrame(d, index=[1, 2])
         d2 = {"1": [1, 3, 5], "2": [2, 4, 6]}
-        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
         d3 = {"1": [1, 3, 5]}
         d4 = {"2": [2, 4, 6]}
+        '''
+        *방법1
+        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
+        print(df2)
+        ---------------------------------------
+        *방법2
+        d = {'a': [1, 2], 'b': [3, 4], 'c': [5, 6]}
+        df1 = pd.DataFrame(d, index=[1, 2])
+        print(df1)
+        '''
+        j= []
+        h = []
+        [j.append(i) if i % 2 == 0 else h.append(i) for i in range(1,7)]
+        print(j)
+        print(h)
 
+        jh = [h,j]
+        print(jh)
+        ind = ['1','2']
+        c_zip = {i:j for i, j in zip(ind, jh)}
+        print(c_zip)
+        c = [chr(i) for i in range(97, 100)]
 
-        x = []
-        y = []
-        [x.append(i) if i % 2 == 0 else y.append(i) for i in range(1, 7)]
-        f = [y,x]
-        ind = ["1","2"]
-        dic = {i:j for i,j in zip(ind,f)}
+        df1 = pd.DataFrame.from_dict(c_zip, orient='index', columns=c)
+        print(df1)
 
-        columns = [chr(i) for i in range(97,100)]
-        df3 = pd.DataFrame.from_dict(dic, orient='index',columns=columns)
-
-        print(df3)
 
         #frame = pd.DataFrame(d1, index=[1,2])
         #print(frame)
+
 
 
         return None
