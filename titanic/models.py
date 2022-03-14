@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from titanic.domains import Dataset
 import numpy as np
 import pandas as pd
+import sklearn
 
 class Model:
     dataset = Dataset()
