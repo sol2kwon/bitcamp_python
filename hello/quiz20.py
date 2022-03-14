@@ -203,27 +203,30 @@ class Quiz20:
         df1 = pd.DataFrame(d, index=[1, 2])
         print(df1)
         '''
-        j= []
-        h = []
-        [j.append(i) if i % 2 == 0 else h.append(i) for i in range(1,7)]
-        print(j)
-        print(h)
+        evens = []
+        odds = []
+        [evens.append(i) if i % 2 == 0 else odds.append(i) for i in range(1,7)]
+        #print(j)
+        #print(h)
 
-        jh = [h,j]
-        print(jh)
+        jh = [odds,evens]
+        #print(jh)
         ind = ['1','2']
         c_zip = {i:j for i, j in zip(ind, jh)}
-        print(c_zip)
+        #print(c_zip)
         c = [chr(i) for i in range(97, 100)]
-
-        df1 = pd.DataFrame.from_dict(c_zip, orient='index', columns=c)
-        print(df1)
-
+        df3 = pd.DataFrame.from_dict(c_zip, orient='index', columns=c)
+        print(df3)
+        '''   
+           0  1  2
+        1  1  3  5
+        2  2  4  6
+        '''
+        df4 = pd.DataFrame.from_dict(c_zip, orient='index')
+        #print(df4)
 
         #frame = pd.DataFrame(d1, index=[1,2])
         #print(frame)
-
-
 
         return None
 
