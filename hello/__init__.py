@@ -57,7 +57,7 @@ if __name__ == '__main__':
         elif menu == '33': q3.quiz33_df_loc()
         elif menu == '34': q3.quiz34_df_iloc()
         elif menu == '35': q3.quiz35()
-        elif menu == '36': q2.quiz36()
+        elif menu == '36': q3.quiz36()
         elif menu == '37': q2.quiz37()
         elif menu == '38': q2.quiz38()
         elif menu == '39': q2.quiz39()

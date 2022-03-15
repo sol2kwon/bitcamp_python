@@ -1,7 +1,9 @@
 # https://github.com/datasciencedojo/datasets
-from titanic.views import View
+from titanic.views import TitanicView
+from titanic.models import TitanicModel
 if __name__ == '__main__':
-    view = View()
+    view = TitanicView()
+    model = TitanicModel(train_fname='train.csv',test_fname = 'test.csv')
     while 1:
         menu = input('전처리')
         if menu =='1':

@@ -2,9 +2,9 @@ import random
 import string
 import pandas as pd
 from icecream import ic
-from hello.domains import myRandom,memberlist
+from hello.domains import memberlist
 import numpy as np
-from titanic.models import Model
+from context.models import Model
 
 class Quiz30:
     '''
@@ -87,19 +87,32 @@ class Quiz30:
         print(df2)
         return None
 
-    def quiz33_df_loc(self) -> object:
+    def quiz33_df_loc(self) -> str:
+
         df = self.createDf(keys=['a','b','c','d'],
                            vals= np.random.randint(0,100,4),
                            len=3)
 
-        #ic(df)
-        #https: // pandas.pydata.org / docs / reference / api / pandas.DataFrame.loc.html
-        #grade.csv
+        # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html
+        subjects = ['자바', '파이썬', '자바스크립트', 'SQL']
+        scores = np.random.randint(0, 100, (24, 4))
+        students = memberlist()
+        students_scores = {student: score for student, score in zip(students, scores)}
+        students_scores_df = pd.DataFrame.from_dict(students_scores, orient="index", columns=subjects)
         model = Model()
-        grade_df = model.new_model('grade_backup.csv')
+        # model.save_model(fname='grade.csv', dframe=students_scores_df)
+        grade_df = model.new_model(fname='grade_backup.csv')
         ic(grade_df)
-        subj = ['자바', '파이썬', '자바스크립트', 'SQL']
-        stud = memberlist()
+        print('Q1. 파이썬의 점수만 출력하시오')
+        python_scores = grade_df.loc[:, '파이썬']
+        ic(python_scores)
+        print('Q2. 조현국의 점수만 출력하시오')
+        cho_scores = grade_df.loc['조현국']
+        print('Q3. 조현국의 과목별 점수만 출력하시오')
+        cho_scores = grade_df.loc['조현국']
+        cho_subject_scores = grade_df.loc[['조현국']]
+        ic(type(cho_subject_scores))
+        ic(cho_scores)
 
     def quiz34_df_iloc(self) -> str:
         '''
@@ -184,12 +197,10 @@ class Quiz30:
                             PZOTP  94  78  79  96
                             GOJKU  62  17  75  49
         '''
-        subj = ['자바', '파이썬', '자바스크립트', 'SQL']
-        stud = memberlist()
         return None
 
     def createDf(self,keys, vals,len):
-        return pd.DataFrame([dict(zip(keys,vals)) for _ in range(len)])
+     return pd.DataFrame([dict(zip(keys,vals)) for _ in range(len)])
 
     def quiz35(self) -> str: return None
 
