@@ -15,7 +15,71 @@ class TitanicModel(object):
             ic(self.train)
 
     def preprocess(self):
-        self.create_label()
+        df =self.train
+        df = self.drop_feature(df)
+        df = self.create_train(df)
+        df = self.create_label(df)
+        df = self.name_nominal(df)
+        df = self.sex_nominal(df)
+        df = self.age_ratio(df)
+        df = self.embarked_nominal(df)
+        df = self.pclass_ordinal(df)
+        df = self.fare_ratio(df)
+        return df
+
+
+    @staticmethod
+    def create_label(df)->object:
+        return df
+
+    @staticmethod
+    def create_train(df)->object:
+        return df
+
+    def drop_feature(self,df)->object:
+        a = [ i for i in []]
+        df = self.sibsp_garbage(df)
+        df = self.parch_garbage(df)
+        df = self.ticket_garbage(df)
+        df = self.cabin_garbage(df)
+        return df
+    '''
+    categorical vs. Quantitative
+    Cate -> nominal (이름) vs. ordinal(순서)
+    Quan -> interval(상대) vs. ratio(절대)
     
-    def create_label(self):
+    '''
+    def pclass_ordinal(self)->object:
         pass
+
+    def name_nominal(self)->object:
+        pass
+
+    def age_ratio(self)->object:
+        pass
+
+    def sibsp_garbage(self)->object:
+        self.drop_feature()
+
+
+    def parch_garbage(self)->object:
+        self.drop_feature()
+
+
+    def ticket_garbage(self)->object:
+        pass
+
+    def sex_nominal(self)->object:
+        pass
+
+    def cabin_garbage(self)->object:
+        pass
+
+    def embarked_nominal(self) -> object:
+        pass
+
+    def fare_ratio(self)-> object:
+        pass
+
+
+

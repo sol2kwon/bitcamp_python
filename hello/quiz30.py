@@ -105,14 +105,14 @@ class Quiz30:
         ic(grade_df)
         print('Q1. 파이썬의 점수만 출력하시오')
         python_scores = grade_df.loc[:, '파이썬']
-        ic(python_scores)
+        ic(type(python_scores))
         print('Q2. 조현국의 점수만 출력하시오')
         cho_scores = grade_df.loc['조현국']
+        ic(type(cho_scores))
         print('Q3. 조현국의 과목별 점수만 출력하시오')
-        cho_scores = grade_df.loc['조현국']
         cho_subject_scores = grade_df.loc[['조현국']]
         ic(type(cho_subject_scores))
-        ic(cho_scores)
+
 
     def quiz34_df_iloc(self) -> str:
         '''
