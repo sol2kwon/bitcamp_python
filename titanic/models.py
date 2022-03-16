@@ -4,18 +4,18 @@ from context.models import Model
 
 
 class TitanicModel(object):
+    model = Model()
+    dataset = Dataset()
     def __init__(self,train_fname,test_fname):
-            self.model = Model()
-            self.dataset = Dataset()
             self.train = self.model.new_model(train_fname)
             self.test = self.model.new_model(test_fname)
+            ic(f'트레인 컬럼 {self.df.columns}')
+            ic(f'트레인 헤드 {self.df.head()}')
             # id 추출
-            ic(f'트레인 컬럼 {self.train.columns}')
-            ic(f'트레인 헤드 {self.test.head()}')
-            ic(self.train)
 
     def preprocess(self):
-        df =self.train
+        df = self.train
+        ic(df)
         df = self.drop_feature(df)
         df = self.create_train(df)
         df = self.create_label(df)
@@ -38,10 +38,12 @@ class TitanicModel(object):
 
     def drop_feature(self,df)->object:
         a = [ i for i in []]
-        df = self.sibsp_garbage(df)
-        df = self.parch_garbage(df)
-        df = self.ticket_garbage(df)
-        df = self.cabin_garbage(df)
+        '''
+        self.sibsp_garbage(df)
+        self.parch_garbage(df)
+        self.ticket_garbage(df)
+        self.cabin_garbage(df)
+        '''
         return df
     '''
     categorical vs. Quantitative
@@ -49,37 +51,30 @@ class TitanicModel(object):
     Quan -> interval(상대) vs. ratio(절대)
     
     '''
-    def pclass_ordinal(self)->object:
-        pass
 
-    def name_nominal(self)->object:
-        pass
+    @staticmethod
+    def pclass_ordinal(df) -> object:
+        return df
 
-    def age_ratio(self)->object:
-        pass
+    @staticmethod
+    def name_nominal(df) -> object:
+        return df
 
-    def sibsp_garbage(self)->object:
-        self.drop_feature()
+    @staticmethod
+    def age_ratio(df) -> object:
+        return df
 
+    @staticmethod
+    def sex_nominal(df) -> object:
+        return df
 
-    def parch_garbage(self)->object:
-        self.drop_feature()
+    @staticmethod
+    def embarked_nominal(df) -> object:
+        return df
 
-
-    def ticket_garbage(self)->object:
-        pass
-
-    def sex_nominal(self)->object:
-        pass
-
-    def cabin_garbage(self)->object:
-        pass
-
-    def embarked_nominal(self) -> object:
-        pass
-
-    def fare_ratio(self)-> object:
-        pass
+    @staticmethod
+    def fare_ratio(df) -> object:
+        return df
 
 
 
