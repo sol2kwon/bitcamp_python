@@ -103,3 +103,5 @@ class TitanicModel(object):
     @staticmethod
     def fare_ratio(this) -> object:
         return this
+
+
