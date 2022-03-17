@@ -102,10 +102,6 @@ class Quiz20:
             dict[ls1[i]] = ls2[i]
         print(dict)
 
-
-
-
-
     @staticmethod
     def quiz25dictcom()-> str:
         a = Quiz00
@@ -120,9 +116,6 @@ class Quiz20:
         aa={i : j for i , j in zip (students,scores)}
 
         print(aa)
-
-
-
 
     def quiz26map(self) -> str: return None
 
@@ -139,7 +132,6 @@ class Quiz20:
             dict[i] = j
         print(dict)
         return dict
-
 
         # artists = soup.find_all('span',{'class' : 'checkEllipsis'})
         # artists = [i.get_text() for i in artists]

@@ -1,10 +1,6 @@
 from hello.domains import myRandom, memberlist
 import random
 
-
-
-
-
 class Quiz00:
     def quiz00calculator(self):
         a = myRandom(1, 100)
