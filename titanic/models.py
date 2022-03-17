@@ -19,7 +19,7 @@ class TitanicModel(object):
         this.label = this.train['Survived']
         this.train = this.train.drop('Survived', axis=1)
         #Entity에서 object로 전환
-        this = self.drop_feature(this)
+        this = self.drop_feature(this,'Cabin','Parch','SibSp','Ticket')
         '''
         this = self.create_train(this)
         this = self.create_label(this)
@@ -60,6 +60,7 @@ class TitanicModel(object):
     this.train = this.train.drop('Cabin', axis=1)
     this.train = this.train.drop('Ticket', axis=1)
     '''
+
     '''
     this.train = this.train.drop('SibSp', axis=1)
     this.train = this.train.drop('Parch', axis=1)
