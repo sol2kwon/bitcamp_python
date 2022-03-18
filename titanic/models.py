@@ -21,8 +21,12 @@ class TitanicModel(object):
         this.train = this.train.drop('Survived', axis=1)
         # Entity 에서 Object 로 전환
         this = self.drop_feature(this, 'SibSp','Parch','Ticket','Cabin')
-        # self.kwargs_sample(name='이순신')
-        this = self.name_nominal(this)
+        # self.kwargs_sample(name='이순신') kwargs 샘플... 타이타닉 흐름과 무관
+        this = self.extract_title_from_name(this)
+        self.remove_duplicate(this)
+        # this = self.title_nominal(this)
+
+        # this = self.name_nominal(this)
         '''
         this = self.sex_nominal(this)
         this = self.age_ratio(this)
@@ -49,7 +53,7 @@ class TitanicModel(object):
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
-        ic(type(feature))
+        ic(type(feature)) # ic| type(feature): <class 'tuple'>
         '''
         for i in [this.train, this.test]:
             for j in feature:
@@ -59,7 +63,7 @@ class TitanicModel(object):
 
     @staticmethod
     def kwargs_sample(**kwargs) -> None:
-        ic(type(kwargs)) # ic| type(feature): <class 'tuple'>
+        ic(type(kwargs))
         {print(''.join(f'key:{i}, val:{j}')) for i, j in kwargs.items()} # key:name, val:이순신
 
     '''
@@ -73,10 +77,42 @@ class TitanicModel(object):
         return this
 
     @staticmethod
-    def name_nominal(this) -> object:
+    def extract_title_from_name(this) -> None:
         combine = [this.train, this.test]
         for dataset in combine:
-            dataset['Title'] = dataset.Name.str.extract('([A-Za-z])+\.',expand=False)
+            dataset['Title'] = dataset.Name.str.extract('([A-Za-z]+)\.', expand=False)
+        ic(this.train.head(5))
+        return this
+
+    @staticmethod
+    def remove_duplicate(this) -> None:
+        a = []
+        for dataset in [this.train, this.test]:
+            a += list(set(dataset['Title']))
+        a = list(set(a))
+        print(f'>>> {a}')
+        '''
+        ['Mr', 'Sir', 'Major', 'Don', 'Rev', 'Countess', 'Lady', 'Jonkheer', 'Dr',
+        'Miss', 'Col', 'Ms', 'Dona', 'Mlle', 'Mme', 'Mrs', 'Master', 'Capt']
+        Royal : ['Countess', 'Lady', 'Sir']
+        Rare : ['Capt','Col','Don','Dr','Major','Rev','Jonkheer','Dona','Mme' ]
+        Mr : ['Mlle']
+        Ms : ['Miss']
+        Master
+        Mrs
+        '''
+        title_mapping = {'Mr': 1, 'Miss': 2, 'Mrs':3, 'Master':4, 'Royal':5, 'Rare': 6}
+        return title_mapping
+
+    @staticmethod
+    def title_nominal(this,title_mapping) -> object:
+        combine = [this.train, this.test]
+        for dataset in combine:
+            dataset['Title'] = dataset['Title'].replace(['Countess', 'Lady', 'Sir'],' Royal')
+            dataset['Title'] = dataset['Title'].replace(['Capt','Col','Don','Dr','Major','Rev','Jonkheer','Dona','Mme'],'Rare')
+            dataset['Title'] = dataset['Title'].replace(['Countess', 'Lady', 'Sir'], ' Royal')
+            dataset['Title'] = dataset['Title'].replace(['Countess', 'Lady', 'Sir'], ' Royal')
+
             ic(dataset['Title'])
         return this
 
