@@ -27,14 +27,14 @@ class TitanicModel(object):
         # self.kwargs_sample(name='이순신') kwargs 샘플... 타이타닉 흐름과 무관
         this = self.extract_title_from_name(this)
         title_mapping = self.remove_duplicate(this)
-        this = self.title_nominal(this, title_mapping)
-        this = self.drop_feature(this, 'Name')
-        this = self.sex_nominal(this)
-        this = self.drop_feature(this, 'Sex')
-        this = self.embarked_nominal(this)
-        this = self.age_ratio(this)
+        #this = self.title_nominal(this, title_mapping)
+        #this = self.drop_feature(this, 'Name')
+        #this = self.sex_nominal(this)
+        #this = self.drop_feature(this, 'Sex')
+        #this = self.embarked_nominal(this)
+        #this = self.age_ratio(this)
         this = self.fare_ratio(this)
-        this = self.drop_feature(this, 'Fare')
+        #this = self.drop_feature(this, 'Fare')
         self.df_info(this)
         return this
 
@@ -126,15 +126,16 @@ class TitanicModel(object):
         age_mapping = {'Unknown': 0, 'Baby': 1, 'Child': 2, 'Teenager': 3, 'Student': 4,
                        'Young Adult': 5, 'Adult': 6, 'Senior': 7}
         train['Age'] = train['Age'].fillna(-0.5)
-        test['Age'] = test['Age'].fillna(-0.5)  # 왜 NaN 값에 -0.5 를 할당할까요?
-        # Unknown 은 범위가 없는 상태이기 때문에 -1부터 0 사이에 임의의 결측값 -0.5넣어주면서 Unknown의 범위를 만들어준 것이다
-        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf]  # 이것을 이해해보세요
-        # None 타입을 np.inf를 이용해 숫자 값으로 변환해주는 역할
+        test['Age'] = test['Age'].fillna(-0.5)  #nan의 값을 -0.5로 변경
+        # Unknown 의 범위인 -1 부터 0 사이의 임의의 결측 값을 입력 해준것이다.
+        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf]
+        # np.inf 무한대 /Senior 60세 부터 무한대의 값을 포함하기 위해 사용한다.
         labels = ['Unknown', 'Baby', 'Child', 'Teenager', 'Student', 'Young Adult', 'Adult', 'Senior']
         for these in train, test:
-            # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오
+            # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오.
             these['AgeGroup'] = pd.cut(these['Age'], bins, right=True, labels=labels)  # pd.cut() 을 사용
-            # pd.cut() 이란 구간 나누기를 하기 위한 문법
+            # pd.cut() 이란 동일한 길이만큼 구간 나누기를 하기 위한 문법
+            # pd.qcut() 이란 동일한 개수만큼 구간 나누기를 하기 위한 문법
             these['AgeGroup'] = these['AgeGroup'].map(age_mapping)  # map() 을 사용
             # map() 이란
         return this

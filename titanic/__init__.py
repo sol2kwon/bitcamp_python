@@ -1,4 +1,7 @@
 # https://github.com/datasciencedojo/datasets/blob/master/titanic.csv
+import numpy as np
+import pandas as pd
+
 from titanic.models import TitanicModel
 from titanic.template import TitanicTemplate
 from titanic.views import TitanicView
