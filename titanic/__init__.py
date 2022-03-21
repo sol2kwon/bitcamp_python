@@ -5,6 +5,7 @@ import pandas as pd
 from titanic.models import TitanicModel
 from titanic.template import TitanicTemplate
 from titanic.views import TitanicView
+
 if __name__ == '__main__':
     view = TitanicView()
 
@@ -19,5 +20,5 @@ if __name__ == '__main__':
         elif menu == '2':
             print(' #### 2. 전처리 #### \n')
             model = TitanicModel()
-            model.preprocess(train_fname='train.csv',test_fname='test.csv')
+            model.learning(train_fname='train.csv',test_fname='test.csv')
             break
