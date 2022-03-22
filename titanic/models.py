@@ -145,11 +145,10 @@ class TitanicModel(object):
         age_mapping = {'Unknown':0 , 'Baby': 1, 'Child': 2, 'Teenager' : 3, 'Student': 4,
                        'Young Adult': 5, 'Adult':6,  'Senior': 7}
         train['Age'] = train['Age'].fillna(-0.5)
-        test['Age'] = test['Age'].fillna(-0.5) # 왜 NaN 값에 -0.5 를 할당할까요 ?
-        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] # 이것을 이해해보세요
+        test['Age'] = test['Age'].fillna(-0.5)
+        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf]
         labels = ['Unknown', 'Baby', 'Child', 'Teenager', 'Student', 'Young Adult', 'Adult', 'Senior']
         for these in train, test:
-            # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오
             these['Age'] = pd.cut(these['Age'], bins=bins, labels=labels) # pd.cut() 을 사용
             these['AgeGroup'] = these['Age'].map(age_mapping) # map() 을 사용
         return this
