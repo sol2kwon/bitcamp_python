@@ -22,7 +22,7 @@ class TitanicModel(object):
         this.id = this.test['PassengerId']
         this.label = this.train['Survived']
         this.train = this.train.drop('Survived', axis=1)
-        # Entity 에서 Object 로 전환
+        # Entity 에서 Object 로 전환된다.
         this = self.drop_feature(this, 'SibSp','Parch','Ticket','Cabin')
         # self.kwargs_sample(name='이순신') kwargs 샘플... 타이타닉 흐름과 무관
         this = self.extract_title_from_name(this)
