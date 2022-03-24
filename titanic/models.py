@@ -16,7 +16,7 @@ class TitanicModel(object):
         this = self.dataset
         that = self.model
         feature = ['PassengerId','Survived','Pclass','Name','Sex','Age','SibSp','Parch','Ticket','Fare','Cabin','Embarked']
-        # 데이터셋은 Train, Test, Validation 3종류로 나뉜다
+        # dataset은 Train, Test, Validation 3종류로 나뉜다
         this.train = that.new_dframe(train_fname)
         this.test = that.new_dframe(test_fname)
         this.id = this.test['PassengerId']
@@ -70,8 +70,8 @@ class TitanicModel(object):
 
     @staticmethod
     def id_info(this):
-        ic(f'id 의 타입  {type(this.id)}')
-        ic(f'id 의 상위 3개 {this.id[:3]}')
+        ic(f' id 의 타입  {type(this.id)}')
+        ic(f' id 의 상위 3개 {this.id[:3]}')
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
@@ -188,7 +188,7 @@ class TitanicModel(object):
     def get_accuracy(this, k_fold):
         score = cross_val_score(RandomForestClassifier(), this.train, this.label,
                                 cv = k_fold, n_jobs=1, scoring='accuracy')
-        return round(np.mean(score)*100, 2)
+        return round(np.mean(score) * 100, 2)
 
 
 
